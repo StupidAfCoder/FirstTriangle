@@ -21,5 +21,8 @@
     <ClCompile Include="C:\Users\Yashu\Downloads\Compressed\glad_2\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Triangle2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

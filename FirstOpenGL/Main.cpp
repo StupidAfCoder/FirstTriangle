@@ -51,7 +51,6 @@ int main() {
 		std::cout << "Failed To load GLAD" << std::endl;
 		return -1;
 	}
-	glViewport(0, 0, 800, 600);
 
 	unsigned int vertexShader;
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
