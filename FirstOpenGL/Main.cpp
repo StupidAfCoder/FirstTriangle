@@ -39,7 +39,7 @@ int main() {
 		return -1;
 	}
 	
-	Shader myShader("G:/Crazy C++/FirstOpenGL/Shaders/vertex.glsl", "G:/Crazy C++/FirstOpenGL/Shaders/fragment.glsl");
+	Shader myShader("Shaders/vertex.glsl", "Shaders/fragment.glsl");
 	float offset = 0.5f;
 	myShader.use();
 	myShader.setFloat("xOffset", offset);
