@@ -3,6 +3,9 @@
 #include<GLFW/glfw3.h>
 #include"Shader.h"
 #include"stb_image.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void Process_Input(GLFWwindow* window);
@@ -37,9 +40,9 @@ int main()
 	{
 		//Rectangle Coords            //Color                    //texture coords
 		-0.5f , -0.5f , 0.0f ,        1.0f , 0.0f , 0.0f,		0.0f , 0.0f,   //bottom left
-		0.5f , 0.5f , 0.0f ,          0.0f , 1.0f , 0.0f,		2.0f , 2.0f,   //top right
-		0.5f , -0.5f , 0.0f,		  0.0f , 0.0f , 1.0f,		2.0f , 0.0f,   //bottom right
-		-0.5f , 0.5f , 0.0f,		  1.0f , 1.0f , 0.0f,		0.0f , 2.0f	   //top left
+		0.5f , 0.5f , 0.0f ,          0.0f , 1.0f , 0.0f,		1.0f , 1.0f,   //top right
+		0.5f , -0.5f , 0.0f,		  0.0f , 0.0f , 1.0f,		1.0f , 0.0f,   //bottom right
+		-0.5f , 0.5f , 0.0f,		  1.0f , 1.0f , 0.0f,		0.0f , 1.0f	   //top left
 	};
 
 	unsigned int indices[] =
@@ -124,6 +127,11 @@ int main()
 	myShader.setInt("myTexture", 0);
 	myShader.setInt("myOtherTex", 1);
 
+	//glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+	//glm::mat4 trans = glm::mat4(1.0f);
+	//trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
+	//vec = trans * vec;
+	//std::cout << vec.x << vec.y << vec.z << std::endl;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -138,6 +146,10 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		myShader.use();
+		glm::mat4 trans = glm::mat4(1.0f);
+		trans = glm::translate(trans, glm::vec3(0.1f, 0.1f, 0.0f));
+		trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+		myShader.setMat4("transform", trans);
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
